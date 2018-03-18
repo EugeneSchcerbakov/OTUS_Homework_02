@@ -9,6 +9,9 @@
     <ClCompile Include="reverse_sqrt.cpp">
       <Filter>acm_timus_tasks</Filter>
     </ClCompile>
+    <ClCompile Include="localization_problem.cpp">
+      <Filter>acm_timus_tasks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="acm_timus_tasks">
@@ -20,6 +23,9 @@
       <Filter>acm_timus_tasks</Filter>
     </ClInclude>
     <ClInclude Include="reverse_sqrt.h">
+      <Filter>acm_timus_tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="localization_problem.h">
       <Filter>acm_timus_tasks</Filter>
     </ClInclude>
   </ItemGroup>
