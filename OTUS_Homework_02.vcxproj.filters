@@ -2,5 +2,25 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="test_main.cpp" />
+    <ClCompile Include="a_plus_b.cpp">
+      <Filter>acm_timus_tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="reverse_sqrt.cpp">
+      <Filter>acm_timus_tasks</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="acm_timus_tasks">
+      <UniqueIdentifier>{7f8986c6-985a-41a6-87f2-6821c3a7e722}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="a_plus_b.h">
+      <Filter>acm_timus_tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="reverse_sqrt.h">
+      <Filter>acm_timus_tasks</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
