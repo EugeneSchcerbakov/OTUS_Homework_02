@@ -27,7 +27,7 @@ set_target_properties(homework_02 homework_02_lib test_main PROPERTIES
   COMPILE_OPTIONS -Wpedantic -Wall -Wextra
 )
 
-set_target_properties
+set_target_properties(
 	test_a_plus_b
 	test_localization_problem
 	test_olympiad
