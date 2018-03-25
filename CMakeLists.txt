@@ -39,7 +39,6 @@ set_target_properties(
 )
 
 target_link_libraries(homework_02 homework_02_lib)
-target_link_libraries(test_main ${Boost_LIBRARIES} homework_02_lib)
 
 target_link_libraries(test_a_plus_b homework_02_lib)
 target_link_libraries(test_localization_problem homework_02_lib)
