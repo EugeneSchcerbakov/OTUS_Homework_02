@@ -1,6 +1,6 @@
 #include "utils.h"
 
-#include <boost\lexical_cast.hpp>
+#include <stdlib.h>
 
 std::vector<long long> ExtractInt64FromString(const std::string & input)
 {
@@ -18,8 +18,9 @@ std::vector<long long> ExtractInt64FromString(const std::string & input)
 		}
 
 		std::string num = input.substr(beg, beg - end);
-		//numbers.push_back(std::stoll(num));
-		numbers.push_back(boost::lexical_cast<long long int>(num));
+		// COMP FAILED at g++: error: stoll is not a member of std
+		// numbers.push_back(std::stoll(num));
+		numbers.push_back(strtoll(num.c_str(), nullptr, 0));
 
 		beg = input.find_first_of(tokens, end + 1);
 		end = input.find_first_not_of(tokens, beg);
