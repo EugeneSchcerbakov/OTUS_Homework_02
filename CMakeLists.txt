@@ -16,9 +16,7 @@ add_library(homework_02_lib
 	sulfide_mass.cpp
 )
 
-target_compile_features(homework_02_lib PUBLIC CXX_STANDARD 14)
-
-set_target_properties(homework_02 test_main_cli PROPERTIES
+set_target_properties(homework_02 homework_02_lib test_main_cli PROPERTIES
   CXX_STANDARD 14
   CXX_STANDARD_REQUIRED ON
   COMPILE_OPTIONS -Wpedantic -Wall -Wextra
