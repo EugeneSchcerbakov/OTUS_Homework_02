@@ -7,12 +7,16 @@ find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 add_executable(homework_02 main.cpp)
 add_executable(test_main_cli test_main.cpp)
 
-add_library(homework_02_utils utils.cpp)
-add_library(homework_02_a_plus_b a_plus_b.cpp)
-add_library(homework_02_localization_problem localization_problem.cpp)
-add_library(homework_02_olympiad olympiad.cpp)
-add_library(homework_02_reverse_sqrt reverse_sqrt.cpp)
-add_library(homework_02_sulfide_mass sulfide_mass.cpp)
+add_library(homework_02_lib
+	utils.cpp
+	a_plus_b.cpp
+	localization_problem.cpp
+	olympiad.cpp
+	reverse_sqrt.cpp
+	sulfide_mass.cpp
+)
+
+target_compile_features(homework_02_lib PUBLIC CXX_STANDARD 14)
 
 set_target_properties(homework_02 test_main_cli PROPERTIES
   CXX_STANDARD 14
@@ -25,21 +29,12 @@ set_target_properties(test_main_cli PROPERTIES
   INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
 )
 
-target_link_libraries(homework_02
-	homework_02_a_plus_b
-	homework_02_localization_problem
-	homework_02_olympiad
-	homework_02_reverse_sqrt
-	homework_02_sulfide_mass
+target_link_libraries(homework_02 homework_02_lib
 )
 
 target_link_libraries(test_main_cli
   ${Boost_LIBRARIES}
-  	homework_02_a_plus_b
-	homework_02_localization_problem
-	homework_02_olympiad
-	homework_02_reverse_sqrt
-	homework_02_sulfide_mass
+	homework_02_lib
 )
 
 install(TARGETS homework_02
