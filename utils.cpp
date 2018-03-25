@@ -1,5 +1,7 @@
 #include "utils.h"
 
+#include <boost\lexical_cast.hpp>
+
 std::vector<long long> ExtractInt64FromString(const std::string & input)
 {
 	std::vector<long long> numbers;
@@ -16,7 +18,8 @@ std::vector<long long> ExtractInt64FromString(const std::string & input)
 		}
 
 		std::string num = input.substr(beg, beg - end);
-		numbers.push_back(std::stoll(num));
+		//numbers.push_back(std::stoll(num));
+		numbers.push_back(boost::lexical_cast<long long int>(num));
 
 		beg = input.find_first_of(tokens, end + 1);
 		end = input.find_first_not_of(tokens, beg);
