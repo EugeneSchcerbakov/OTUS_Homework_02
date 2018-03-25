@@ -5,7 +5,7 @@ project(homework_02 VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
 add_executable(homework_02 main.cpp)
-add_executable(test_main_cli test_main.cpp)
+add_executable(test_main test_main.cpp)
 
 add_library(homework_02_lib
 	utils.cpp
@@ -16,13 +16,13 @@ add_library(homework_02_lib
 	sulfide_mass.cpp
 )
 
-set_target_properties(homework_02 homework_02_lib test_main_cli PROPERTIES
+set_target_properties(homework_02 homework_02_lib test_main PROPERTIES
   CXX_STANDARD 14
   CXX_STANDARD_REQUIRED ON
   COMPILE_OPTIONS -Wpedantic -Wall -Wextra
 )
 
-set_target_properties(test_main_cli PROPERTIES
+set_target_properties(test_main PROPERTIES
   COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
   INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
 )
@@ -30,13 +30,12 @@ set_target_properties(test_main_cli PROPERTIES
 target_link_libraries(homework_02 homework_02_lib
 )
 
-target_link_libraries(test_main_cli
+target_link_libraries(test_main
   ${Boost_LIBRARIES}
-	homework_02_lib
+  homework_02_lib
 )
 
-install(TARGETS homework_02
- RUNTIME DESTINATION bin)
+install(TARGETS homework_02 RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 
@@ -50,8 +49,4 @@ include (CPack)
 
 enable_testing()
 
-add_test(a_plus_b_valid test_main_cli)
-add_test(reverse_sqrt_valid test_main_cli)
-add_test(number_localization_valid test_main_cli)
-add_test(sulfide_mass_valid test_main_cli)
-add_test(olympiad_valid test_main_cli)
+add_test(a_plus_b_valid test_main)
