@@ -2,6 +2,7 @@
 #include <fstream>
 #include <algorithm>
 #include <functional>
+#include <array>
 #include <assert.h>
 
 #include "reverse_sqrt.h"
@@ -9,7 +10,7 @@
 #include "sulfide_mass.h"
 #include "olympiad.h"
 
-typedef std::vector<std::string> ip_addr;
+using ip_addr = std::array<unsigned int, 4>;
 
 std::vector<std::string> split(const std::string &str, char d)
 {
@@ -17,6 +18,7 @@ std::vector<std::string> split(const std::string &str, char d)
 
 	std::string::size_type start = 0;
 	std::string::size_type stop = str.find_first_of(d);
+
 	while (stop != std::string::npos)
 	{
 		r.push_back(str.substr(start, stop - start));
@@ -28,6 +30,19 @@ std::vector<std::string> split(const std::string &str, char d)
 	r.push_back(str.substr(start));
 
 	return r;
+}
+
+ip_addr str_to_ip(const std::string& str)
+{
+	auto ip_str = split(str, '.');
+	ip_addr ip;
+
+	ip[0] = std::stoi(ip_str[0]);
+	ip[1] = std::stoi(ip_str[1]);
+	ip[2] = std::stoi(ip_str[2]);
+	ip[3] = std::stoi(ip_str[3]);
+
+	return ip;
 }
 
 std::vector<ip_addr> read_ip(const std::string& filename)
@@ -46,7 +61,7 @@ std::vector<ip_addr> read_ip(const std::string& filename)
 	while (std::getline(file, ip_line))
 	{
 		std::vector<std::string> v = split(ip_line, '\t');
-		ip_pool.push_back(split(v.at(0), '.'));
+		ip_pool.push_back(str_to_ip(v.at(0)));
 	}
 
 	file.close();
@@ -62,13 +77,10 @@ std::vector<ip_addr> ip_sort(const std::vector<ip_addr>& input)
 	{
 		for (std::size_t i = 0; i < std::min(ip_a.size(), ip_b.size()); i++)
 		{
-			int byte_a = std::atoi(ip_a[i].c_str());
-			int byte_b = std::atoi(ip_b[i].c_str());
-
-			if (byte_a == byte_b) {
+			if (ip_a[i] == ip_b[i]) {
 				continue;
 			} else {
-				return byte_a > byte_b;
+				return ip_a[i] > ip_b[i];
 			}
 		}
 
@@ -83,52 +95,50 @@ std::vector<ip_addr> filter(const std::vector<ip_addr>& ip_pool, Args ...args)
 {
 	assert(sizeof...(args) <= 4);
 
-	std::vector<ip_addr> result;
-	int filter[] = { args... };
+	std::vector<ip_addr> result(ip_pool.size());
+	auto filter = std::array<int, sizeof...(args)>{args...};
 
-	for (auto iter = ip_pool.cbegin(); iter != ip_pool.cend(); iter++)
+	auto iter = std::copy_if(ip_pool.cbegin(), ip_pool.cend(), result.begin(), [f = filter](const ip_addr& ip)
 	{
-		const ip_addr& ip = *iter;
-		bool passed = true;
-
-		for (int i = 0; i < sizeof...(args); i++) {
-			if (std::atoi(ip[i].c_str()) != filter[i]) {
-				passed = false;
-				break;
+		for (int i = 0; i < f.size(); i++) {
+			if (ip[i] != f[i]) {
+				return false;
 			}
 		}
 
-		if (passed) {
-			result.push_back(ip);
-		}
-	}
+		return true;
+	});
+
+	result.resize(std::distance(result.begin(), iter));
 
 	return result;
 }
 
 std::vector<ip_addr> filter_any(const std::vector<ip_addr>& ip_pool, int byte)
 {
-	std::vector<ip_addr> result;
+	std::vector<ip_addr> result(ip_pool);
 
-	for (auto iter = ip_pool.cbegin(); iter != ip_pool.cend(); iter++)
+	auto iter = std::copy_if(ip_pool.cbegin(), ip_pool.cend(), result.begin(), [filter = byte](const ip_addr& ip)
 	{
-		for (auto ip_iter = (*iter).cbegin(); ip_iter != (*iter).cend(); ip_iter++)
-		{
-			if (std::atoi((*ip_iter).c_str()) == byte) {
-				result.push_back(*iter);
-				break;
+		for (int i = 0; i < ip.size(); i++) {
+			if (ip[i] == filter) {
+				return true;
 			}
 		}
-	}
+
+		return false;
+	});
+
+	result.resize(std::distance(result.begin(), iter));
 
 	return result;
 }
 
 void ip_print(const std::vector<ip_addr>& ip_pool)
 {
-	for (std::vector<std::vector<std::string> >::const_iterator ip = ip_pool.cbegin(); ip != ip_pool.cend(); ++ip)
+	for (auto ip = ip_pool.cbegin(); ip != ip_pool.cend(); ++ip)
 	{
-		for (std::vector<std::string>::const_iterator ip_part = ip->cbegin(); ip_part != ip->cend(); ++ip_part)
+		for (auto ip_part = ip->cbegin(); ip_part != ip->cend(); ++ip_part)
 		{
 			if (ip_part != ip->cbegin())
 			{
@@ -152,13 +162,15 @@ int main()
 		for (std::string line; std::getline(std::cin, line);)
 		{
 			std::vector<std::string> v = split(line, '\t');
-			ip_pool.push_back(split(v.at(0), '.'));
+			ip_pool.push_back(str_to_ip(v.at(0)));
 		}
 #endif
 
 		// TODO reverse lexicographically sort
 
-		ip_print(ip_sort(ip_pool));
+		ip_pool = ip_sort(ip_pool);
+
+		ip_print(ip_pool);
 
 		// 222.173.235.246
 		// 222.130.177.64
@@ -171,8 +183,7 @@ int main()
 		// TODO filter by first byte and output
 		// ip = filter(1)
 
-		std::cout << std::endl << "filter by first byte 1" << std::endl << std::endl;
-		ip_print(ip_sort(filter(ip_pool, 1)));
+		ip_print(filter(ip_pool, 1));
 
 		// 1.231.69.33
 		// 1.87.203.225
@@ -182,8 +193,8 @@ int main()
 
 		// TODO filter by first and second bytes and output
 		// ip = filter(46, 70)
-		std::cout << std::endl << "filter by first and second bytes 46, 70" << std::endl << std::endl;
-		ip_print(ip_sort(filter(ip_pool, 46, 70)));
+
+		ip_print(filter(ip_pool, 46, 70));
 
 		// 46.70.225.39
 		// 46.70.147.26
@@ -193,8 +204,7 @@ int main()
 		// TODO filter by any byte and output
 		// ip = filter_any(46)
 
-		std::cout << std::endl << "filter by any byte 46" << std::endl << std::endl;
-		ip_print(ip_sort(filter_any(ip_pool, 46)));
+		ip_print(filter_any(ip_pool, 46));
 
 		// 186.204.34.46
 		// 186.46.222.194
