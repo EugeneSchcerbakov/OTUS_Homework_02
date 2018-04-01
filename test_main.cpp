@@ -12,7 +12,7 @@
 
 BOOST_AUTO_TEST_SUITE(test_suite_main)
 
-BOOST_AUTO_TEST_CASE(ip_filter_split_test)
+BOOST_AUTO_TEST_CASE(ip_split_test)
 {
 	std::string ip_s{ "113.162.145.156" };
 	ip_addr ip{ 113, 162, 145, 156 };
@@ -23,8 +23,8 @@ BOOST_AUTO_TEST_CASE(ip_filter_split_test)
 		BOOST_CHECK_EQUAL(ip[i], std::stoi(result[i]));
 	}
 }
-
-BOOST_AUTO_TEST_CASE(ip_filter_sort_test)
+/*
+BOOST_AUTO_TEST_CASE(ip_sort_test)
 {
 	ip_addr ip0{ 128, 0, 0, 0 };
 	ip_addr ip1{ 64, 0, 0, 4 };
@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE(ip_filter_sort_test)
 	BOOST_CHECK_EQUAL_COLLECTIONS(result[2].begin(), result[2].end(), ip2.begin(), ip2.end());
 }
 
-BOOST_AUTO_TEST_CASE(ip_filter_filter_test)
+BOOST_AUTO_TEST_CASE(ip_filter_test)
 {
 	std::vector<ip_addr> data{
 		ip_addr{ 128, 0, 0, 2 },
@@ -61,7 +61,7 @@ BOOST_AUTO_TEST_CASE(ip_filter_filter_test)
 
 	BOOST_CHECK_EQUAL_COLLECTIONS(check1[0].begin(), check1[0].end(), data[4].begin(), data[4].end());
 }
-
+*/
 BOOST_AUTO_TEST_CASE(a_plus_b_valid)
 {
 	BOOST_CHECK(A_Plus_B_Test());
