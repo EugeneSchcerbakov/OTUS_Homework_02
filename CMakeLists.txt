@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.2)
 
 project(homework_02 VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
-set(TEST_NAME ip_filter_test)
+set(TEST_NAME test_main)
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
