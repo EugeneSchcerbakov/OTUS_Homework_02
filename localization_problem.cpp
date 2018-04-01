@@ -45,20 +45,3 @@ std::string LocalizeNumber(int number)
 	assert(false);
 	return std::string();
 }
-
-bool LocalizeNumberTest()
-{
-	bool isPassed = true;
-
-	isPassed = isPassed && LocalizeNumber(2) == "few";
-	isPassed = isPassed && LocalizeNumber(7) == "several";
-	isPassed = isPassed && LocalizeNumber(10) == "pack";
-	isPassed = isPassed && LocalizeNumber(30) == "lots";
-	isPassed = isPassed && LocalizeNumber(80) == "horde";
-	isPassed = isPassed && LocalizeNumber(150) == "throng";
-	isPassed = isPassed && LocalizeNumber(300) == "swarm";
-	isPassed = isPassed && LocalizeNumber(700) == "zounds";
-	isPassed = isPassed && LocalizeNumber(1024) == "legion";
-
-	return false;
-}

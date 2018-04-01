@@ -22,7 +22,15 @@ BOOST_AUTO_TEST_CASE(reverse_sqrt_valid)
 
 BOOST_AUTO_TEST_CASE(number_localization_valid)
 {
-	BOOST_CHECK(/*LocalizeNumberTest()*/true);
+	BOOST_CHECK_EQUAL(LocalizeNumber(2), "few");
+	BOOST_CHECK_EQUAL(LocalizeNumber(7), "several");
+	BOOST_CHECK_EQUAL(LocalizeNumber(10), "pack");
+	BOOST_CHECK_EQUAL(LocalizeNumber(30), "lots");
+	BOOST_CHECK_EQUAL(LocalizeNumber(80), "horde");
+	BOOST_CHECK_EQUAL(LocalizeNumber(150), "throng");
+	BOOST_CHECK_EQUAL(LocalizeNumber(300), "swarm");
+	BOOST_CHECK_EQUAL(LocalizeNumber(700), "zounds");
+	BOOST_CHECK_EQUAL(LocalizeNumber(1024), "legion");
 }
 
 BOOST_AUTO_TEST_CASE(sulfide_mass_valid)

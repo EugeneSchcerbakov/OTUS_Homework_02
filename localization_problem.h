@@ -28,6 +28,5 @@ private:
 };
 
 std::string LocalizeNumber(int number);
-bool LocalizeNumberTest();
 
 #endif
