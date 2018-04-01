@@ -15,7 +15,6 @@ BOOST_AUTO_TEST_CASE(a_plus_b_valid)
 	BOOST_CHECK(A_Plus_B_Test());
 }
 
-/*
 BOOST_AUTO_TEST_CASE(reverse_sqrt_valid)
 {
 	BOOST_CHECK(ReverseSquareRootTest());
@@ -35,6 +34,5 @@ BOOST_AUTO_TEST_CASE(olympiad_valid)
 {
 	BOOST_CHECK(TestIsPossibleToSolve());
 }
-*/
 
 BOOST_AUTO_TEST_SUITE_END()
