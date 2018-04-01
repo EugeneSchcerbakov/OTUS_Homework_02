@@ -43,7 +43,6 @@ BOOST_AUTO_TEST_CASE(ip_sort_test)
 	BOOST_CHECK_EQUAL_COLLECTIONS(result[2].begin(), result[2].end(), ip2.begin(), ip2.end());
 }
 
-/*
 BOOST_AUTO_TEST_CASE(ip_filter_test)
 {
 	std::vector<ip_addr> data{
@@ -62,7 +61,7 @@ BOOST_AUTO_TEST_CASE(ip_filter_test)
 
 	BOOST_CHECK_EQUAL_COLLECTIONS(check1[0].begin(), check1[0].end(), data[4].begin(), data[4].end());
 }
-*/
+
 BOOST_AUTO_TEST_CASE(a_plus_b_valid)
 {
 	BOOST_CHECK(A_Plus_B_Test());

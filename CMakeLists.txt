@@ -54,6 +54,7 @@ enable_testing()
 
 add_test(ip_split_test ${TEST_NAME})
 add_test(ip_sort_test ${TEST_NAME})
+add_test(ip_filter_test ${TEST_NAME})
 add_test(a_plus_b_valid ${TEST_NAME})
 add_test(reverse_sqrt_valid ${TEST_NAME})
 add_test(number_localization_valid ${TEST_NAME})
