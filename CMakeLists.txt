@@ -10,6 +10,7 @@ add_executable(homework_02 main.cpp)
 add_executable(${TEST_NAME} test_main.cpp)
 
 add_library(homework_02_lib
+	ip_filter.cpp
 	utils.cpp
 	a_plus_b.cpp
 	localization_problem.cpp
