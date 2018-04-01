@@ -51,4 +51,5 @@ include (CPack)
 
 enable_testing()
 
-add_test(${TEST_NAME} ${TEST_NAME})
+add_test(a_plus_b_valid ${TEST_NAME})
+add_test(reverse_sqrt_valid ${TEST_NAME})
