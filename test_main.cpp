@@ -20,12 +20,12 @@ BOOST_AUTO_TEST_CASE(reverse_sqrt_valid)
 	BOOST_CHECK(ReverseSquareRootTest());
 }
 
-/*
 BOOST_AUTO_TEST_CASE(number_localization_valid)
 {
 	BOOST_CHECK(LocalizeNumberTest());
 }
 
+/*
 BOOST_AUTO_TEST_CASE(sulfide_mass_valid)
 {
 	BOOST_CHECK(CalcSulfideMassTest());
