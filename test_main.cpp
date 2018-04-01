@@ -60,6 +60,10 @@ BOOST_AUTO_TEST_CASE(ip_filter_test)
 	std::vector<ip_addr> check1 = filter(data, 256, 16);
 
 	BOOST_CHECK_EQUAL_COLLECTIONS(check1[0].begin(), check1[0].end(), data[3].begin(), data[3].end());
+
+	std::vector<ip_addr> check2 = filter_any(data, 16);
+
+	BOOST_CHECK_EQUAL_COLLECTIONS(check2[0].begin(), check2[0].end(), data[3].begin(), data[3].end());
 }
 
 BOOST_AUTO_TEST_CASE(a_plus_b_valid)
