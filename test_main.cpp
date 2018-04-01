@@ -23,7 +23,7 @@ BOOST_AUTO_TEST_CASE(ip_split_test)
 		BOOST_CHECK_EQUAL(ip[i], std::stoi(result[i]));
 	}
 }
-/*
+
 BOOST_AUTO_TEST_CASE(ip_sort_test)
 {
 	ip_addr ip0{ 128, 0, 0, 0 };
@@ -43,6 +43,7 @@ BOOST_AUTO_TEST_CASE(ip_sort_test)
 	BOOST_CHECK_EQUAL_COLLECTIONS(result[2].begin(), result[2].end(), ip2.begin(), ip2.end());
 }
 
+/*
 BOOST_AUTO_TEST_CASE(ip_filter_test)
 {
 	std::vector<ip_addr> data{
