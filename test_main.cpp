@@ -25,7 +25,6 @@ BOOST_AUTO_TEST_CASE(number_localization_valid)
 	BOOST_CHECK(/*LocalizeNumberTest()*/true);
 }
 
-/*
 BOOST_AUTO_TEST_CASE(sulfide_mass_valid)
 {
 	BOOST_CHECK(CalcSulfideMassTest());
@@ -35,6 +34,5 @@ BOOST_AUTO_TEST_CASE(olympiad_valid)
 {
 	BOOST_CHECK(TestIsPossibleToSolve());
 }
-*/
 
 BOOST_AUTO_TEST_SUITE_END()
