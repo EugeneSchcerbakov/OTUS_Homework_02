@@ -13,4 +13,4 @@ deploy:
   provider: script
   skip_cleanup: true
   script:
-  - curl -T homework_02-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -ueugeneschcerbakov:$BINTRAY_API_KEY "https://api.bintray.com/content/evgeniyshb/OTUS_Homework_CI/homework_02/$TRAVIS_BUILD_NUMBER/homework-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+  - curl -T homework_02-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uevgeniyshb2:$BINTRAY_API_KEY "https://api.bintray.com/content/evgeniyshb2/OTUS_Homework/homework_02/$TRAVIS_BUILD_NUMBER/homework-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
